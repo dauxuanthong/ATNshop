@@ -478,7 +478,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-7 account-top">
                         
 <ul>
-    <form>
+    <form name="Register" action="register.php" method="POST" >
             <li>User Name</li><li><input type="text" name="userName" /></li>
             <li>Phone Number</li><li><input type="text" name="phoneNumber" /></li>
             <li>Email</li><li><input type="text" name="email" /></li>
