@@ -479,22 +479,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <form>
                             <div>
                                 <span class="pass">UserName*</span>
-                                <input type="password">
+                                <input type="text" name="userName">
                             </div>
                             <div>
                                 <span class="pass">PhoneNumber*</span>
-                                <input type="password">
+                                <input type="text" name="phoneNumber">
                             </div>
                             <div>
                                 <span>Email*</span>
-                                <input type="text">
+                                <input type="text" name="email">
                             </div>
                             <div>
                                 <span class="pass">Password*</span>
-                                <input type="password">
+                                <input type="text" name="password">
                             </div>
-                            <input type="submit" value="Submit">
+                            <input type="submit">
                         </form>
+<?php
+
+if (empty(getenv("DATABASE_URL"))){
+    echo '<p>The DB does not exist</p>';
+    $pdo = new PDO('pgsql:host=localhost;port=5432;dbname=mydb', 'postgres', '123456');
+}  else {
+     
+   $db = parse_url(getenv("DATABASE_URL"));
+   $pdo = new PDO("pgsql:" . sprintf(
+        "host=ec2-52-202-146-43.compute-1.amazonaws.com;port=5432;user=cvhqeduujnyqxg;password=aad11007cb211613700a38ad36a1d79687a08db07d15ea8162d4ea864219e47f;dbname=dao2sncoi01gj7",
+        $db["host"],
+        $db["port"],
+        $db["user"],
+        $db["pass"],
+        ltrim($db["path"], "/")
+   ));
+}  
+
+if($pdo === false){
+     echo "ERROR: Could not connect Database";
+}
+$sql = "INSERT INTO customer(userName, phoneNumber, email, password)"
+        . " VALUES('$_POST[userName]','$_POST[phoneNumber]','$_POST[email]','$_POST[password]')";
+$stmt = $pdo->prepare($sql);
+//$stmt->execute();
+    if (is_null(email)) {
+   echo "Customer ID must be not null";
+ }
+ else
+ {
+    if($stmt->execute() == TRUE){
+        echo "Record inserted successfully.";
+    } else {
+        echo "Error inserting record: ";
+    }
+ }
+ 
+?>
                     </div>
                     <div class="col-md-5 left-account ">
                         <a href="single.html">
