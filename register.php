@@ -513,8 +513,8 @@ $sql = "INSERT INTO customer(userName, phoneNumber, email, password)"
         . " VALUES('$_POST[userName]','$_POST[phoneNumber]','$_POST[email]','$_POST[password]')";
 $stmt = $pdo->prepare($sql);
 //$stmt->execute();
-    if (is_null(email)) {
-   echo "Customer ID must be not null";
+    if (is_null($_POST[email])) {
+   echo "Email must be not null";
  }
  else
  {
