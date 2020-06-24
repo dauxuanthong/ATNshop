@@ -476,25 +476,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="container">
                     <h3>Registration</h3>
                     <div class="col-md-7 account-top">
-                        <form>
-                            <div>
-                                <span class="pass">UserName*</span>
-                                <input type="text" name="userName">
-                            </div>
-                            <div>
-                                <span class="pass">PhoneNumber*</span>
-                                <input type="text" name="phoneNumber">
-                            </div>
-                            <div>
-                                <span>Email*</span>
-                                <input type="text" name="email">
-                            </div>
-                            <div>
-                                <span class="pass">Password*</span>
-                                <input type="text" name="password">
-                            </div>
-                            <input type="submit">
-                        </form>
+                        
+<ul>
+    <form>
+            <li>User Name</li><li><input type="text" name="userName" /></li>
+            <li>Phone Number</li><li><input type="text" name="phoneNumber" /></li>
+            <li>Email</li><li><input type="text" name="email" /></li>
+            <li>Password</li><li><input type="text" name="password" /></li>
+            <li><input type="submit" /></li>
+    </form>
+</ul>
+                        
 <?php
 
 if (empty(getenv("DATABASE_URL"))){
@@ -504,7 +496,7 @@ if (empty(getenv("DATABASE_URL"))){
      
    $db = parse_url(getenv("DATABASE_URL"));
    $pdo = new PDO("pgsql:" . sprintf(
-        "host=ec2-52-202-146-43.compute-1.amazonaws.com;port=5432;user=cvhqeduujnyqxg;password=aad11007cb211613700a38ad36a1d79687a08db07d15ea8162d4ea864219e47f;dbname=dao2sncoi01gj7",
+        "ec2-52-202-146-43.compute-1.amazonaws.com;port=5432;user=cvhqeduujnyqxg;password=aad11007cb211613700a38ad36a1d79687a08db07d15ea8162d4ea864219e47f;dbname=dao2sncoi01gj7",
         $db["host"],
         $db["port"],
         $db["user"],
@@ -516,6 +508,7 @@ if (empty(getenv("DATABASE_URL"))){
 if($pdo === false){
      echo "ERROR: Could not connect Database";
 }
+
 $sql = "INSERT INTO customer(userName, phoneNumber, email, password)"
         . " VALUES('$_POST[userName]','$_POST[phoneNumber]','$_POST[email]','$_POST[password]')";
 $stmt = $pdo->prepare($sql);
@@ -533,17 +526,8 @@ $stmt = $pdo->prepare($sql);
  }
  
 ?>
-                    </div>
-                    <div class="col-md-5 left-account ">
-                        <a href="single.html">
-                            <img class="img-responsive " src="images/s4.jpg" alt=""/>
-                        </a>
-                        <div class="five-in">
-                            <h1>35% </h1>
-                            <span>discount</span>
-                        </div>
-                        <a href="register.html" class="create">Create an account</a>
-                        <div class="clearfix"></div>
+
+                        
                     </div>
                     <div class="clearfix"></div>
                 </div>
