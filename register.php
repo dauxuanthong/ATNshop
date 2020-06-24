@@ -478,15 +478,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-7 account-top">
                         
 <ul>
-    <form name="Register" action="register.php" method="POST" >
-            <li>User Name</li><li><input type="text" name="userName" /></li>
-            <li>Phone Number</li><li><input type="text" name="phoneNumber" /></li>
-            <li>Email</li><li><input type="text" name="email" /></li>
-            <li>Password</li><li><input type="text" name="password" /></li>
-            <li><input type="submit" /></li>
-    </form>
-</ul>
-                        
+    <form name="register" action="register.php" method="POST" >
+							<li>User Name</li><li><input type="text" name="userName" /></li>
+							<li>Phone Number</li><li><input type="text" name="phoneNumber" /></li>
+							<li>Email</li><li><input type="text" name="email" /></li>
+							<li>Password</li><li><input type="text" name="password" /></li>
+							<li><input type="submit" /></li>
+						</form>
+
+
 <?php
 
 if (empty(getenv("DATABASE_URL"))){
@@ -496,7 +496,7 @@ if (empty(getenv("DATABASE_URL"))){
      
    $db = parse_url(getenv("DATABASE_URL"));
    $pdo = new PDO("pgsql:" . sprintf(
-        "ec2-52-202-146-43.compute-1.amazonaws.com;port=5432;user=cvhqeduujnyqxg;password=aad11007cb211613700a38ad36a1d79687a08db07d15ea8162d4ea864219e47f;dbname=dao2sncoi01gj7",
+        "host=ec2-52-202-146-43.compute-1.amazonaws.com;user=cvhqeduujnyqxg;password=aad11007cb211613700a38ad36a1d79687a08db07d15ea8162d4ea864219e47f;dbname=dao2sncoi01gj7;",
         $db["host"],
         $db["port"],
         $db["user"],
@@ -509,12 +509,21 @@ if($pdo === false){
      echo "ERROR: Could not connect Database";
 }
 
+//Khởi tạo Prepared Statement
+//$stmt = $pdo->prepare('INSERT INTO customer (customerid, customername, customerphone, address) values (:id, :name, :phone, :address)');
+
+//$stmt->bindParam(':id','c01');
+//$stmt->bindParam(':name','thien');
+//$stmt->bindParam(':phone', '7393472389');
+//$stmt->bindParam(':address', 'hung vuong');
+//$stmt->execute();
+//$sql = "INSERT INTO customer(customerid, customername, customerphone, address) VALUES('c01', 'thien','7393472389','hung vuong')";
 $sql = "INSERT INTO customer(userName, phoneNumber, email, password)"
         . " VALUES('$_POST[userName]','$_POST[phoneNumber]','$_POST[email]','$_POST[password]')";
 $stmt = $pdo->prepare($sql);
 //$stmt->execute();
-    if (is_null($_POST[email])) {
-   echo "Email must be not null";
+ if (is_null($_POST[email])) {
+   echo "email must be not null";
  }
  else
  {
@@ -524,9 +533,7 @@ $stmt = $pdo->prepare($sql);
         echo "Error inserting record: ";
     }
  }
- 
 ?>
-
                         
                     </div>
                     <div class="clearfix"></div>
