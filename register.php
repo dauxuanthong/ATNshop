@@ -478,20 +478,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-7 account-top">
                         <form>
                             <div>
-                                <span>UserName*</span>
-                                <input type="text" value="UserName*" name="userName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'p_name';}" required="">
+                                <span>CustomerName*</span>
+                                <input type="text" value="CustomerName*" name="customerName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'customerName';}" required="">
                             </div>
                             <div>
                                 <span>CustomerPhone*</span>
-                                <input type="text" value="CustomerPhone*" name="customerPhone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'p_name';}" required="">
+                                <input type="text" value="CustomerPhone*" name="customerPhone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'customerPhone';}" required="">
                             </div>
                             <div>
                                 <span>Email*</span>
-                                <input type="text" value="Email*" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'p_name';}" required="">
+                                <input type="text" value="Email*" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'email';}" required="">
                             </div>
                             <div>
                                 <span class="pass">Password*</span>
-                                <input type="text" value="Password*" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'p_name';}" required="">
+                                <input type="text" value="Password*" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" required="">
                             </div>
                             <input type="submit" value="Submit">
                         </form>
