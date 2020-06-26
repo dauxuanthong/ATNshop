@@ -496,7 +496,7 @@ if (empty(getenv("DATABASE_URL"))){
    ));
 }   
 
-$sql = "SELECT * FROM product";
+$sql = "SELECT * FROM customer";
 $stmt = $pdo->prepare($sql);
 //Thiết lập kiểu dữ liệu trả về
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
