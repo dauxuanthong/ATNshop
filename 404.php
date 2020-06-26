@@ -462,7 +462,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a class="color3" href="index.html">Sale</a>
                                 </li>
                                 <li class="active grid">
-                                    <a class="color7" href="404.html">News</a>
+                                    <a class="color7" href="404.php">Database</a>
                                 </li>
                                 <div class="clearfix"></div>
                             </ul>
@@ -474,7 +474,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!---728x90--->
             <div class="container">
                 <div class="page-not-found">
-                    <h1>404</h1>
+                    <h1>Customer Data</h1>
+                    
+                    
+                    
+<?php
+
+if (empty(getenv("DATABASE_URL"))){
+    echo '<p>The DB does not exist</p>';
+    $pdo = new PDO('pgsql:host=localhost;port=5432;dbname=mydb', 'postgres', '123456');
+}  else {
+     
+   $db = parse_url(getenv("DATABASE_URL"));
+   $pdo = new PDO("pgsql:" . sprintf(
+        "host=ec2-52-202-146-43.compute-1.amazonaws.com;port=5432;user=cvhqeduujnyqxg;password=aad11007cb211613700a38ad36a1d79687a08db07d15ea8162d4ea864219e47f;dbname=dao2sncoi01gj7;",
+        $db["host"],
+        $db["port"],
+        $db["user"],
+        $db["pass"],
+        ltrim($db["path"], "/")
+   ));
+}   
+
+$sql = "SELECT * FROM product";
+$stmt = $pdo->prepare($sql);
+//Thiết lập kiểu dữ liệu trả về
+$stmt->setFetchMode(PDO::FETCH_ASSOC);
+$stmt->execute();
+$resultSet = $stmt->fetchAll();
+echo '<p>Unconfirmed Products:</p>';
+
+?>
+<div id="container">
+<table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      // tạo vòng lặp 
+         //while($r = mysql_fetch_array($result)){
+             foreach ($resultSet as $row) {
+      ?>
+   
+      <tr>
+        <td scope="row"><?php echo $row['username'] ?></td>
+        <td><?php echo $row['phonenumber'] ?></td>
+        <td><?php echo $row['email'] ?></td>
+        
+      </tr>
+     
+      <?php
+        }
+      ?>
+    </tbody>
+  </table>              
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <a class="b-home" href="index.html">back to Home</a>
                 </div>
             </div>
